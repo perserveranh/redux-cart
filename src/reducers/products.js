@@ -1,4 +1,4 @@
-// import * as types from '../constants/actionType';
+
 var initialState = [
     {
         id: 1,
@@ -10,7 +10,7 @@ var initialState = [
         rating: 4
     },
     {
-        id: 1,
+        id: 2,
         name: 'Iphone Y',
         image: 'https://images-na.ssl-images-amazon.com/images/I/61P5h3EjMFL._SX342_.jpg',
         description: 'Sản phẩm do apple sản xuất !',
@@ -19,7 +19,7 @@ var initialState = [
         rating: 3
     },
     {
-        id: 1,
+        id: 3,
         name: 'Iphone Z',
         image: 'https://cdn.tgdd.vn/Products/Images/42/114115/iphone-x-64gb-1-400x460.png',
         description: 'Sản phẩm do apple sản xuất !',

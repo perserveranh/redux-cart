@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import { connect } from 'react-redux';
+import * as Message from './../constants/Message';
 class ProductItem extends Component {
     render() {
         var { product } = this.props;
@@ -31,7 +31,11 @@ class ProductItem extends Component {
                             <div className="card-footer">
                                 <span className="left">{product.price}$</span>
                                 <span className="right">
-                                    <a className="btn-floating blue-gradient" data-toggle="tooltip" data-placement="top" title="" data-original-title="Add to Cart">
+                                    <a
+                                        onClick={() => this.onAddtoCart(product)}
+                                        className="btn-floating blue-gradient"
+                                        data-toggle="tooltip"
+                                        data-placement="top" title="" data-original-title="Add to Cart">
                                         <i className="fa fa-shopping-cart"></i>
                                     </a>
                                 </span>
@@ -52,10 +56,10 @@ class ProductItem extends Component {
         }
         return result;
     }
-}
-const mapStateToProps = state => {
-    return {
-        products: state.products
+    onAddtoCart = (product) => {
+        this.props.onAddToCart(product);
+        this.props.onChangeMessage(Message.MSG_ADD_TO_CART_SUCCESS);
     }
 }
-export default connect(mapStateToProps)(ProductItem);
+
+export default ProductItem;
