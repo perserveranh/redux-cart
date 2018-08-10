@@ -2,12 +2,13 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Products from './../components/products';
 import ProductItem from './../components/productItem';
-import { addToCart, change_message } from '../actions/index';
+import api from '../components/api/index';
 
 
 class ProductsContainer extends Component {
     render() {
         var { products } = this.props;
+        console.log(products);
         return (
             <Products>
                 {this.showProducts(products)}
@@ -30,17 +31,16 @@ class ProductsContainer extends Component {
         return result;
     }
     onAddToCart = (product) => {
-        this.props.dispatch(addToCart(product, 1));
+        api.addToCart(product, 1);
     }
     onChangeMessage = (message) => {
-        this.props.dispatch(change_message(message));
+        api.change_message(message);
     }
 }
 
 const mapStateToProps = state => {
     return {
         products: state.products
-
     }
 }
 

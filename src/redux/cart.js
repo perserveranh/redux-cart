@@ -1,13 +1,15 @@
-import * as Types from './../constants/ActionType';
+// import * as Types from './../constants/ActionType';
 
 var data = JSON.parse(localStorage.getItem('cart'));
+console.log('rrrrrrrrrrrrrrrrrrr', data)
 var initialState = data ? data : [];
 
 const myReducers = (state = initialState, action) => {
     var { product, quantity } = action;
     var index = -1;
     switch (action.type) {
-        case Types.ADD_TO_CART:
+        case "ADD_TO_CART":
+            console.log(action);
             index = findProductCart(state, product);
             if (index !== -1) {
                 state[index].quantity += quantity;
@@ -19,23 +21,24 @@ const myReducers = (state = initialState, action) => {
                 })
             }
             localStorage.setItem('cart', JSON.stringify(state));
-            return [...state];
-        case Types.DELETE_PRODUCT_IN_CART:
+            console.log("change state", state)
+            return state;
+        case "DELETE_PRODUCT_IN_CART":
             index = findProductCart(state, product);
             if (index !== -1) {
                 state.splice(index, 1);
             }
             localStorage.setItem('cart', JSON.stringify(state));
-            return [...state];
-        case Types.UPDATE_PRODUCT_IN_CART:
+            return [...state, { product }];
+        case "UPDATE_PRODUCT_IN_CART":
             index = findProductCart(state, product);
             if (index !== -1) {
                 state[index].quantity = quantity;
             }
             localStorage.setItem('cart', JSON.stringify(state));
-            return [...state];
+            return [...state, { product, quantity }];
         default:
-            return [...state];
+            return state;
     }
 
 }

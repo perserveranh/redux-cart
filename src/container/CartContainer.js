@@ -4,7 +4,7 @@ import Cart from './../components/cart';
 import * as Message from './../constants/Message';
 import CartItem from './../components/cartItem';
 import CartResult from './../components/cartResult';
-import { delete_product, change_message, update_product } from '../actions';
+import api from '../components/api/index';
 
 class CartContainer extends Component {
     render() {
@@ -42,16 +42,15 @@ class CartContainer extends Component {
             return <CartResult cart={cart} />
         }
         return result;
-
     }
     onDeleteProductInCart = (product) => {
-        this.props.dispatch(delete_product(product));
+        api.delete_product(product);
     }
     onChangeMessage = (message) => {
-        this.props.dispatch(change_message(message));
+        api.change_message(message);
     }
     onUpdateProductInCart = (product, quantity) => {
-        this.props.dispatch(update_product(product, quantity));
+        api.update_product(product, quantity);
     }
 }
 const mapStateToProps = state => {
